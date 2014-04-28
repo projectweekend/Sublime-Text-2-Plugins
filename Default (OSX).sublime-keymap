@@ -1,5 +1,0 @@
-[
-    {
-        "keys": ["ctrl+shift+a"], "command": "node_js_make_api_module"
-    }
-]
