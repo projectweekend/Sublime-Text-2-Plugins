@@ -4,7 +4,7 @@ import os
 class PersonalAssistantTask(object):
 
     directory_list = []
-    selected_directory = ""    
+    selected_directory = ""
 
     def __init__(self, sublime_api):
         self._api = sublime_api
@@ -23,6 +23,7 @@ class PersonalAssistantTask(object):
 
     def make_index_file(self):
         index_file = open('index.js', 'w')
+        index_file.write("var async = require( 'async' );\n");
         index_file.write("var ValidationManager = require( './validation' );\n")
         index_file.write("var DataManager = require( './data' );\n")
         index_file.write("var OutputManager = require( './output' );\n")
@@ -34,11 +35,13 @@ class PersonalAssistantTask(object):
         validation_file.write("var validator = require( 'validator' );\n")
         validation_file.write("var DataManager = require( './data' );\n")
         validation_file.write("var utils = require( '../utils' );\n")
+        validation_file.write("var validationError = require( '../utils' ).validationError;\n")
         validation_file.close()
 
     def make_data_file(self):
         data_file = open('data.js', 'w')
         data_file.write("var appModels = require( '../models' );\n")
+        data_file.write("var systemError = require( '../utils' ).systemError;\n")
         data_file.close()
 
     def make_output_file(self):
