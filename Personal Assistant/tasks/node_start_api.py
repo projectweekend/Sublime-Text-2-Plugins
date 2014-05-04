@@ -21,27 +21,36 @@ class PersonalAssistantTask(object):
             return True
         self.directory_list = filter(directories_to_exclude, [x[0] for x in os.walk(project_folder)])
 
-    def make_index_file(self):
-        index_file = open('index.js', 'w')
+    def prepare_index_file(self, index_file):
         index_file.write("var async = require( 'async' );\n");
         index_file.write("var ValidationManager = require( './validation' );\n")
         index_file.write("var DataManager = require( './data' );\n")
         index_file.write("var OutputManager = require( './output' );\n")
         index_file.write("var utils = require( '../utils' );\n")
+
+    def make_index_file(self):
+        index_file = open('index.js', 'w')
+        self.prepare_index_file(index_file)
         index_file.close()
 
-    def make_validation_file(self):
-        validation_file = open('validation.js', 'w')
+    def prepare_validation_file(self, validation_file):
         validation_file.write("var validator = require( 'validator' );\n")
         validation_file.write("var DataManager = require( './data' );\n")
         validation_file.write("var utils = require( '../utils' );\n")
         validation_file.write("var validationError = require( '../utils' ).validationError;\n")
+
+    def make_validation_file(self):
+        validation_file = open('validation.js', 'w')
+        self.prepare_validation_file(validation_file)
         validation_file.close()
+
+    def prepare_data_file(self, data_file):
+        data_file.write("var appModels = require( '../models' );\n")
+        data_file.write("var systemError = require( '../utils' ).systemError;\n")
 
     def make_data_file(self):
         data_file = open('data.js', 'w')
-        data_file.write("var appModels = require( '../models' );\n")
-        data_file.write("var systemError = require( '../utils' ).systemError;\n")
+        self.prepare_data_file(data_file)
         data_file.close()
 
     def make_output_file(self):
