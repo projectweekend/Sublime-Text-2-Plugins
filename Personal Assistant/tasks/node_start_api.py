@@ -36,7 +36,6 @@ class PersonalAssistantTask(object):
     def prepare_validation_file(self, validation_file):
         validation_file.write("var validator = require( 'validator' );\n")
         validation_file.write("var DataManager = require( './data' );\n")
-        validation_file.write("var utils = require( '../utils' );\n")
         validation_file.write("var validationError = require( '../utils' ).validationError;\n")
 
     def make_validation_file(self):
