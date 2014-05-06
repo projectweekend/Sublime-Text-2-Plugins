@@ -46,6 +46,7 @@ class PersonalAssistantTask(object):
     def prepare_data_file(self, data_file):
         data_file.write("var appModels = require( '../models' );\n")
         data_file.write("var systemError = require( '../utils' ).systemError;\n")
+        data_file.write("var MongooseDataManager = require( '../utils/data_manager' ).MongooseDataManager;\n");
 
     def make_data_file(self):
         data_file = open('data.js', 'w')
