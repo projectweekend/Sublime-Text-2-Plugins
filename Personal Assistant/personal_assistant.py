@@ -6,7 +6,11 @@ import tasks
 class PersonalAssistantCommand(sublime_plugin.WindowCommand):
 
     def process_command(self, command_text):
-        attr_name = '_'.join(command_text.split())
+        parts = command_text.split()
+        if len(parts) == 1:
+            attr_name = parts[0]
+        else:
+            attr_name = '_'.join(parts)
         tasks.__getattribute__(attr_name).PersonalAssistantTask(self)
 
     def run(self):
